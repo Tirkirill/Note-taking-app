@@ -1,8 +1,9 @@
 import React from "react";
 import ReactDom from "react-dom";
+import Main from "./components/main/main.jsx";
 
 const App = ()=> {
-    return(<div>Hello!</div>)
+    return(<Main/>)
 }
 
 export default App;
