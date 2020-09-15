@@ -1,4 +1,35 @@
 .navbar {
     height:$navbar-height;
-    background-color:black;
+    border-bottom:2px solid rgb(243,243,243);
+    display:flex;
+
+    .leftBar {
+        flex-grow:1;
+        border-right:1px solid rgb(243,243,243);
+        height: $navbar-height;
+    }
+
+    .rightBar {
+        height: $navbar-height;
+        flex-grow:2;
+        border-right:2px solid rgb(243,243,243);
+    
+        .email {
+            float:right;
+            color:rgb(40, 150,255);
+            font-size:15px;
+            margin:10px;
+        }
+
+        .infoButton {
+            float:left;
+            width:25px;
+            height:25px;
+            margin:10px;
+            
+        }
+    }
 }
+
+
+
