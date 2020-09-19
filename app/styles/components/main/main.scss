@@ -16,12 +16,31 @@
         label {
             font-size:20px;
             height:100px;
-            display:block;
-            margin:20px;
+            display:flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            .noteDescription {
+                display:none;
+                color:rgb(173, 183,188);
+            }
         }
 
         input:checked ~ label {
-            background-color:red;
+            background-color:rgb(238, 243, 248);
+            .noteDescription {
+                display:block;
+            }
+        }
+    }
+
+    .noteRedactor {
+        .redactor {
+            height:100%;
+            width:100%;
+            border:none;
+            outline:none;
         }
     }
 }

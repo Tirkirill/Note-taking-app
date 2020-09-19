@@ -4,11 +4,14 @@ class TagMenu extends React.Component {
     render() {
         return(
             <div className='tagMenu leftBar'>
-                {this.props.notes.map((note)=> {
+                {this.props.notes.map((note, id)=> {
                     return(
                         <div>
-                            <label for={note.title}>{note.title}</label>
-                            <input type='radio' id={note.title} key={note.title}></input>
+                            <input type='radio' id={id} key={id} name="note" onChange={this.props.chooseNote}></input>
+                            <label htmlFor={id}>
+                                <div className='noteTitle'>{note.title}</div>
+                                <div className='noteDescription'>{note.text.length>20? note.text.length.slice(20) + "...": note.text}</div>
+                            </label>
                         </div>
                     )
                 })}
