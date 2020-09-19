@@ -1,0 +1,27 @@
+.mainFlexBox {
+    display:flex;
+    flex-direction: column;
+}
+
+.notes {
+    flex-grow: 2;
+    flex-basis: 1px;
+    height:100vh;
+
+    .tagMenu {
+        input {
+            display:none;
+        }
+
+        label {
+            font-size:20px;
+            height:100px;
+            display:block;
+            margin:20px;
+        }
+
+        input:checked ~ label {
+            background-color:red;
+        }
+    }
+}

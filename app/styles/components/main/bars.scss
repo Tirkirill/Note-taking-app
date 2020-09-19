@@ -1,0 +1,50 @@
+.bar {
+    border-bottom:2px solid rgb(243,243,243);
+    color:$blue;
+    font-size:15px;
+}
+
+.navbar {
+    height:$navbar-height;
+    .email {
+        float:right;
+        margin:10px;
+    }
+
+    img {
+        float:left;
+        width:25px;
+        height:25px;
+        margin:10px;
+        cursor:pointer;
+    }
+}
+
+.tagbar {
+    height:$tagbar-height;
+
+    .leftBar {
+        .tags {
+            font-size:18px;
+            margin-top:5px;
+            margin-left:10px;
+        }
+
+    }
+
+    .rightBar {
+        .addTagInput {
+            margin:6px;
+            border:0;
+            outline:none;
+            font-weight: bold;
+        }
+
+        .addTagInput:focus {
+            border-bottom:2px solid $blue;
+        }
+    }
+
+
+}
+

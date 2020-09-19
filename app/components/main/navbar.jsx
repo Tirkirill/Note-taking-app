@@ -5,7 +5,7 @@ import deleteButton from "../../images/deleteButton.png";
 
 const Navbar = (props)=> {
     return(
-        <div className='navbar'>
+        <div className='grid bar navbar'>
             <div className='leftBar'></div>
             <div className='rightBar'>
                 <img className='infoButton' onClick={()=>console.log('info!')} src={infoButton}></img>

@@ -2,3 +2,18 @@ body {
     margin:0;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
+
+.grid {
+    display:flex;
+
+    .leftBar {
+        flex-grow: 1;
+        flex-basis: 1px;
+        border-right:1px solid rgb(243,243,243);
+    }
+
+    .rightBar {
+        flex-grow: 2;
+        flex-basis: 1px;
+    }
+}

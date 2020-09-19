@@ -1,5 +1,7 @@
 import React from "react";
 import Navbar from "./navbar.jsx";
+import Tagbar from "./tagbar.jsx";
+import Notes from "./notes.jsx";
 
 
 class Main extends React.Component {
@@ -9,7 +11,11 @@ class Main extends React.Component {
 
     render() {
         return(
-            <Navbar user={this.props.user}/>
+            <div className='mainFlexBox'>
+                <Navbar user={this.props.user}/>
+                <Tagbar />
+                <Notes/>
+            </div>
         )
     }
 }
