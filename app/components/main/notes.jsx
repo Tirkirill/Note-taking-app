@@ -5,11 +5,11 @@ import NoteRedactor from "./noteredactor.jsx";
 let notes = [
     {
         title:"Job",
-        text:"fsdfdsfsf"
+        text:"<div>Hello!</div>"
     },
     {
         title:"Jamie",
-        text:"fsdgfsdfsdfsdf"
+        text:"Россия!"
     }
 ]
 
@@ -25,7 +25,6 @@ class Notes extends React.Component {
 
 
     chooseNote(event) {
-        console.log(event.target.id);
         this.setState({currentNote:event.target.id})
     }
 

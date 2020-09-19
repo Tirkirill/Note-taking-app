@@ -36,9 +36,16 @@
     }
 
     .noteRedactor {
+        .titleEditor {
+            font-weight: bold;
+            padding:10px;
+            border:none;
+            outline:none;
+            font-size:35px;
+        }
         .redactor {
-            height:100%;
-            width:100%;
+            padding:10px;
+            font-size:25px;
             border:none;
             outline:none;
         }

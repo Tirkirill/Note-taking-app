@@ -3,17 +3,13 @@ import React from "react";
 class NoteRedactor extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            text: props.note.text
-        };
     }
 
     render(){
         return (
             <div className='noteRedactor rightBar'>
-                <textarea className='redactor'
-                    defaultValue={this.state.text}
-                />
+                <div contentEditable className='titleEditor'>{this.props.note.title}</div>
+                <div contentEditable className='redactor'>{this.props.note.text}</div>
             </div>
         )
     }

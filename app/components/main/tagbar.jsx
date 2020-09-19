@@ -8,6 +8,7 @@ const Tagbar = (props)=> {
             </div>
             <div className='rightBar'>
                 <input className='addTagInput' placeholder="Добавить запись..."></input>
+                <button className='addTag' onClick={()=>console.log("Записал!")}></button>
             </div>
         </div>
     )

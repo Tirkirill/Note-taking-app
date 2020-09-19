@@ -38,10 +38,39 @@
             border:0;
             outline:none;
             font-weight: bold;
+            width:120px;
         }
 
         .addTagInput:focus {
             border-bottom:2px solid $blue;
+        }
+
+        .addTag {
+            
+            outline:none;
+            border:none;
+            background-color:transparent;
+        }
+
+        .addTag::after {
+            margin-bottom: 3px;
+            content:"";
+            width:15px;
+            height:3px;
+            background-color: $blue;
+            display:block;
+        }
+
+        .addTag::before {
+            content:"";
+            transform: translateY(3px) rotate(90deg);
+            width:15px;
+            height:3px;
+            background-color: $blue;
+            display:block;
+        }
+        .addTag:active {
+            transform:scale(0.9);
         }
     }
 
