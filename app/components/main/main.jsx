@@ -2,19 +2,20 @@ import React from "react";
 import Navbar from "./navbar.jsx";
 import Tagbar from "./tagbar.jsx";
 import Notes from "./notes.jsx";
+import getStringNowDate from "./js/getStringNowDate";
 
 let notes = [
     {
         title:"Job",
         text:"Hello!",
         uniqueId:"0",
-        lastChangeDate:"12.09.2012"
+        lastChangeDate:"12.09.2012 13:00"
     },
     {
         title:"Jamie",
         text:"Россия!",
         uniqueId:"1",
-        lastChangeDate:"13.09.2012"
+        lastChangeDate:"13.09.2012 12:00"
     }
 ]
 
@@ -25,7 +26,8 @@ class Main extends React.Component {
         this.state = {
             notes:notes,
             currentNote:null,
-            suitableNotes:notes
+            suitableNotes:notes,
+            query:""
         };
         this.addNote = this.addNote.bind(this);
         this.saveNote = this.saveNote.bind(this);
@@ -35,13 +37,35 @@ class Main extends React.Component {
     }
 
     addNote(title) {
+        let note = {title:title, text:"", lastChangeDate: getStringNowDate()};
         if (title!="") {
-            this.setState(
-                {
-                    notes:[...(this.state.notes.concat({title:title, text:""}))]
-                }
-            )
+            if (title.includes(this.state.query)) {
+                this.setState(
+                    {
+                        notes:[...(this.state.notes.concat(note))],
+                        suitableNotes:this.state.suitableNotes.concat(note),
+                    }
+                )
+            }
+            else {
+                this.setState(
+                    {
+                        notes:[...(this.state.notes.concat(note))],
+                    }
+                )
+            }
+
         }
+    }
+
+    filterNotes(query) {
+        let newSuitableNotes = [];
+        for (let note of this.state.notes) {
+            if (note.title.toLowerCase().includes(query)) {
+                newSuitableNotes.push(note);
+            }
+        }
+        return newSuitableNotes;
     }
 
     deleteNote(id) {
@@ -66,47 +90,33 @@ class Main extends React.Component {
         })
     }
 
-    getStringNowDate() {
-        let now = new Date();
-        let day = now.getDate().toString();
-        let month = (now.getMonth()+1).toString();
-        let hours = now.getHours().toString();
-        let minutes = now.getMinutes().toString();
-        if (day.length == 1) day = "0"+day;
-        if (month.length==1) month="0"+month;
-        if (hours.length==1) hours="0"+hours;
-        if (minutes.length==1) minutes="0"+minutes;
-        return day + "." + month + "." + now.getFullYear() + " " + hours + ":" + minutes;
-    }
-
 
     saveNote(title, text, currentNote) {
         let newNotes = this.state.notes.slice();
         newNotes[currentNote].title = title;
         newNotes[currentNote].text = text;
-        newNotes[currentNote].lastChangeDate = this.getStringNowDate();
+        newNotes[currentNote].lastChangeDate = getStringNowDate();
         this.setState({
             notes:newNotes
         })
     }
 
     onSearchInputHandler(e) {
-        let query = e.target.value;
+        let query = e.target.value.toLowerCase();
         if (query=="") {
             this.setState({
-                suitableNotes:notes
+                query:"",
+                suitableNotes:this.state.notes,
+                currentNote:null
             });
             return
         }
-        let newSuitableNotes = [];
-        for (let note of this.state.notes) {
-            if (note.title.includes(query)) {
-                newSuitableNotes.push(note);
-            }
-        }
         this.setState({
-            suitableNotes:newSuitableNotes
+            query:query,
+            suitableNotes:this.filterNotes(query),
+            currentNote:null
         })
+        
     }
 
     render() {
