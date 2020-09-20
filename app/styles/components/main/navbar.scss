@@ -1,31 +1,62 @@
 .navbar {
     height:$navbar-height;
-    .email {
-        float:right;
-        margin:10px;
-        font-weight: bold;
+
+    .leftBar {
+        .searchInput {
+            margin:10px;
+            border-radius:10px;
+            outline: none;
+            font-size:15px;
+            border:1px solid $gray;
+            text-indent: 20px;
+            width:75%;
+            height:60%;
+        }
+
+        .searchIcon::after, .searchIcon::before {
+            position:absolute;
+            display:block;
+            content:"";
+        }
+
+        .searchIcon::after {
+            background-color: $gray;
+            left:23px;
+            top:24px;
+            height:3px;
+            width:5px;
+            transform: rotate(45deg);
+        }
+
+        .searchIcon::before {
+            top:14px;
+            left:16px;
+            width:7px;
+            height:7px;
+            border-radius:50%;
+            border:2px solid $gray;
+        }
+
+        .searchInput:focus {
+            border-color:black;
+        }
     }
 
-    .searchInput {
-        margin:10px;
-        border-radius:10px;
-        outline: none;
-        font-size:15px;
-        border:1px solid $gray;
-        text-indent: 20px;
-        width:75%;
-        height:60%;
+    .rightBar {
+        .email {
+            float:right;
+            margin:10px;
+            font-weight: bold;
+        }
+
+        img {
+            float:left;
+            width:25px;
+            height:25px;
+            margin:10px;
+            cursor:pointer;
+        }
     }
 
-    .searchInput:focus {
-        border-color:black;
-    }
-
-    img {
-        float:left;
-        width:25px;
-        height:25px;
-        margin:10px;
-        cursor:pointer;
-    }
+ 
 }

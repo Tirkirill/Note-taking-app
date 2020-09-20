@@ -7,6 +7,7 @@ const Navbar = (props)=> {
     return(
         <div className='grid bar navbar'>
             <div className='leftBar'>
+                <div className="searchIcon"></div>
                 <input className="searchInput" onInput={props.onSearchInputHandler}></input>
             </div>
             <div className='rightBar'>
