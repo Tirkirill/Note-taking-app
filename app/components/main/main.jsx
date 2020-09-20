@@ -89,12 +89,11 @@ class Main extends React.Component {
     }
 
     render() {
-        
         return(
             <div className='mainFlexBox'>
                 <Navbar currentNote={this.state.currentNote} user={this.props.user} deleteNote={this.deleteNote}/>
                 <Tagbar currentNote={this.state.currentNote} addNote={this.addNote}/>
-                <Notes chooseNote = {this.chooseNote} currentNote={this.state.currentNote} notes={this.state.notes} saveNote={this.saveNote}/>
+                <Notes  currentNote={this.state.currentNote} chooseNote = {this.chooseNote} notes={this.state.notes} saveNote={this.saveNote}/>
             </div>
         )
     }
