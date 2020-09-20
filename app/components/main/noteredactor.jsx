@@ -1,4 +1,5 @@
 import React from "react";
+import createCaretPlacer from "./js/createCaretPlacer";
 
 class NoteRedactor extends React.Component {
     constructor(props) {
@@ -8,9 +9,18 @@ class NoteRedactor extends React.Component {
         this.titleEditor = React.createRef();
         this.noteEditor = React.createRef(); 
         this.onInputHandler = this.onInputHandler.bind(this);
+        this.caretPlacer = createCaretPlacer(false);
     }
 
-    onInputHandler() {
+    onInputHandler(e) {
+        if (e.target.innerHTML.includes("&gt;")) {
+            e.target.innerHTML = e.target.innerHTML.replace("&gt;", "\"");
+            this.caretPlacer(e.target);
+        }
+        if (e.target.innerHTML.includes("&lt;")) {
+            e.target.innerHTML = e.target.innerHTML.replace("&lt;", "\"");
+            this.caretPlacer(e.target);
+        }
         if (this.titleEditor.current.innerHTML == this.props.note.title && 
             this.noteEditor.current.innerHTML == this.props.note.text) {
                 this.saveHandler();

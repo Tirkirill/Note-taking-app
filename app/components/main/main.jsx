@@ -2,6 +2,7 @@ import React from "react";
 import Navbar from "./navbar.jsx";
 import Tagbar from "./tagbar.jsx";
 import Notes from "./notes.jsx";
+import noteReplace from "./js/noteReplace";
 
 let notes = [
     {
@@ -39,7 +40,8 @@ class Main extends React.Component {
 
     saveNote(title, text, currentNote) {
         let newNotes = this.state.notes.slice();
-        newNotes[currentNote] = {title:title, text:text, uniqueId: newNotes[currentNote]};
+        let newText = noteReplace(text);
+        newNotes[currentNote] = {title:title, text:newText, uniqueId: newNotes[currentNote]};
         this.setState({
             notes:newNotes
         })

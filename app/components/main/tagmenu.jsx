@@ -11,7 +11,7 @@ class TagMenu extends React.Component {
                             :<input type='radio' id={id} key={note.uniqueId} name="note" onChange={this.props.chooseNote}></input>}
                             <label htmlFor={id}>
                                 <div className='noteTitle'>{note.title}</div>
-                                <div className='noteDescription'>{note.text.length>20? note.text.length.slice(20) + "...": note.text}</div>
+                                <div className='noteDescription'>{note.text.length>10? note.text.slice(0,10) + "...": note.text}</div>
                             </label>
                         </div>
                     )
