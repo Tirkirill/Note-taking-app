@@ -7,12 +7,14 @@ let notes = [
     {
         title:"Job",
         text:"Hello!",
-        uniqueId:"0"
+        uniqueId:"0",
+        lastChangeDate:"12.09.2012"
     },
     {
         title:"Jamie",
         text:"Россия!",
-        uniqueId:"1"
+        uniqueId:"1",
+        lastChangeDate:"13.09.2012"
     }
 ]
 
@@ -64,7 +66,18 @@ class Main extends React.Component {
 
     saveNote(title, text, currentNote) {
         let newNotes = this.state.notes.slice();
-        newNotes[currentNote] = {title:title, text:text, uniqueId: newNotes[currentNote]};
+        newNotes[currentNote].title = title;
+        newNotes[currentNote].text = text;
+        let now = new Date();
+        let day = now.getDate().toString();
+        let month = (now.getMonth()+1).toString();
+        let hours = now.getHours().toString();
+        let minutes = now.getMinutes().toString();
+        if (day.length == 1) day = "0"+day;
+        if (month.length==1) month="0"+month;
+        if (hours.length==1) hours="0"+hours;
+        if (minutes.length==1) minutes="0"+minutes;
+        newNotes[currentNote].lastChangeDate = day + "." + month + "." + now.getFullYear() + " " + hours + ":" + minutes;
         this.setState({
             notes:newNotes
         })

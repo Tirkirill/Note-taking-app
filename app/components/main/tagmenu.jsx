@@ -12,6 +12,7 @@ class TagMenu extends React.Component {
                             <label htmlFor={id}>
                                 <div className='noteTitle'>{note.title}</div>
                                 <div className='noteDescription'>{note.text.length>10? note.text.slice(0,10) + "...": note.text}</div>
+                                <div className='noteLastChangeDate'>{note.lastChangeDate}</div>
                             </label>
                         </div>
                     )

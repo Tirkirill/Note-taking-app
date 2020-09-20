@@ -23,7 +23,11 @@
 
             .noteDescription {
                 display:none;
-                color:rgb(173, 183,188);
+                color:$gray;
+            }
+
+            .noteLastChangeDate {
+                color:$gray;
             }
         }
 
@@ -36,7 +40,6 @@
     }
 
     .noteRedactor {
-
         .saveNoteButton {
             background-color:transparent;
             width:20px;
