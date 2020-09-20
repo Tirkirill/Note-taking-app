@@ -9,6 +9,7 @@
     .email {
         float:right;
         margin:10px;
+        font-weight: bold;
     }
 
     img {
@@ -46,10 +47,10 @@
         }
 
         .addTag {
-            
             outline:none;
             border:none;
             background-color:transparent;
+            cursor:pointer;
         }
 
         .addTag::after {

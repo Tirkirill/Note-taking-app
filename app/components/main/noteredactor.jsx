@@ -8,8 +8,8 @@ class NoteRedactor extends React.Component {
     render(){
         return (
             <div className='noteRedactor rightBar'>
-                <div contentEditable className='titleEditor'>{this.props.note.title}</div>
-                <div contentEditable className='redactor'>{this.props.note.text}</div>
+                <div contentEditable suppressContentEditableWarning className='titleEditor'>{this.props.note.title}</div>
+                <div contentEditable suppressContentEditableWarning className='redactor'>{this.props.note.text}</div>
             </div>
         )
     }

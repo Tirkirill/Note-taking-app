@@ -7,7 +7,7 @@ class TagMenu extends React.Component {
                 {this.props.notes.map((note, id)=> {
                     return(
                         <div>
-                            <input type='radio' id={id} key={id} name="note" onChange={this.props.chooseNote}></input>
+                            <input type='radio' id={id} key={note.uniqueId} name="note" onChange={this.props.chooseNote}></input>
                             <label htmlFor={id}>
                                 <div className='noteTitle'>{note.title}</div>
                                 <div className='noteDescription'>{note.text.length>20? note.text.length.slice(20) + "...": note.text}</div>
