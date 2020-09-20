@@ -24,6 +24,7 @@ class Main extends React.Component {
             notes:notes
         };
         this.addNote = this.addNote.bind(this);
+        this.saveNote = this.saveNote.bind(this);
     }
 
     addNote(title) {
@@ -36,12 +37,20 @@ class Main extends React.Component {
         }
     }
 
+    saveNote(title, text, currentNote) {
+        let newNotes = this.state.notes.slice();
+        newNotes[currentNote] = {title:title, text:text, uniqueId: newNotes[currentNote]};
+        this.setState({
+            notes:newNotes
+        })
+    }
+
     render() {
         return(
             <div className='mainFlexBox'>
                 <Navbar user={this.props.user}/>
                 <Tagbar addNote={this.addNote}/>
-                <Notes notes={this.state.notes}/>
+                <Notes notes={this.state.notes} saveNote={this.saveNote}/>
             </div>
         )
     }

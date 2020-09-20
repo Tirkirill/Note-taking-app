@@ -5,9 +5,9 @@ class NoteRedactor extends React.Component {
         super(props);
         this.saveIndicator= React.createRef();
         this.saveNoteButton = React.createRef();
-        this.onInputHandler = this.onInputHandler.bind(this);
         this.titleEditor = React.createRef();
         this.noteEditor = React.createRef(); 
+        this.onInputHandler = this.onInputHandler.bind(this);
     }
 
     onInputHandler() {
@@ -33,13 +33,15 @@ class NoteRedactor extends React.Component {
         this.saveIndicator.current.innerHTML = "Не сохранено";
     }
 
+
+
     render(){
         if (this.saveIndicator.current && this.saveNoteButton.current) {
             this.saveHandler();
         }
         return (
             <div className='noteRedactor rightBar'>
-                <div ref={this.saveNoteButton} className='saveNoteButton saved'></div>
+                <div ref={this.saveNoteButton} className='saveNoteButton saved' onClick={()=>this.props.saveNote(this.titleEditor.current.innerHTML, this.noteEditor.current.innerHTML)}></div>
                 <span ref={this.saveIndicator} id='saveIndicator'>Сохранено</span>
                 <div ref={this.titleEditor} contentEditable suppressContentEditableWarning className='titleEditor' onInput={this.onInputHandler}>{this.props.note.title}</div>
                 <div ref={this.noteEditor} contentEditable suppressContentEditableWarning className='redactor' onInput={this.onInputHandler}>{this.props.note.text}</div>
