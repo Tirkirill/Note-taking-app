@@ -12,6 +12,21 @@
         font-weight: bold;
     }
 
+    .searchInput {
+        margin:10px;
+        border-radius:10px;
+        outline: none;
+        font-size:15px;
+        border:1px solid $gray;
+        text-indent: 20px;
+        width:75%;
+        height:60%;
+    }
+
+    .searchInput:focus {
+        border-color:black;
+    }
+
     img {
         float:left;
         width:25px;

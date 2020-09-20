@@ -24,12 +24,14 @@ class Main extends React.Component {
         super(props);
         this.state = {
             notes:notes,
-            currentNote:null
+            currentNote:null,
+            suitableNotes:notes
         };
         this.addNote = this.addNote.bind(this);
         this.saveNote = this.saveNote.bind(this);
         this.chooseNote = this.chooseNote.bind(this);
         this.deleteNote = this.deleteNote.bind(this);
+        this.onSearchInputHandler = this.onSearchInputHandler.bind(this);
     }
 
     addNote(title) {
@@ -88,12 +90,31 @@ class Main extends React.Component {
         })
     }
 
+    onSearchInputHandler(e) {
+        let query = e.target.value;
+        if (query=="") {
+            this.setState({
+                suitableNotes:notes
+            });
+            return
+        }
+        let newSuitableNotes = [];
+        for (let note of this.state.notes) {
+            if (note.title.includes(query)) {
+                newSuitableNotes.push(note);
+            }
+        }
+        this.setState({
+            suitableNotes:newSuitableNotes
+        })
+    }
+
     render() {
         return(
             <div className='mainFlexBox'>
-                <Navbar currentNote={this.state.currentNote} user={this.props.user} deleteNote={this.deleteNote}/>
+                <Navbar currentNote={this.state.currentNote} onSearchInputHandler={this.onSearchInputHandler} user={this.props.user} deleteNote={this.deleteNote}/>
                 <Tagbar currentNote={this.state.currentNote} addNote={this.addNote}/>
-                <Notes  currentNote={this.state.currentNote} chooseNote = {this.chooseNote} notes={this.state.notes} saveNote={this.saveNote}/>
+                <Notes  currentNote={this.state.currentNote} chooseNote = {this.chooseNote} notes={this.state.suitableNotes} saveNote={this.saveNote}/>
             </div>
         )
     }
