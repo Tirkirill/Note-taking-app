@@ -25,7 +25,7 @@ class Notes extends React.Component {
     render() {
         return(
             <div className='grid notes'>
-                <TagMenu notes={this.props.notes} chooseNote={this.chooseNote}/>
+                <TagMenu currentNote={this.state.currentNote} notes={this.props.notes} chooseNote={this.chooseNote}/>
                 {this.state.currentNote? <NoteRedactor note={this.props.notes[this.state.currentNote]} saveNote={this.saveNote}/>:<div className='rightBar'></div>}
             </div>
         )
