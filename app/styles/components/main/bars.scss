@@ -36,10 +36,10 @@
     .rightBar {
         .addTagInput {
             margin:6px;
-            border:0;
+            border:none;
             outline:none;
             font-weight: bold;
-            width:120px;
+            width:170px;
         }
 
         .addTagInput:focus {
@@ -53,22 +53,21 @@
             cursor:pointer;
         }
 
-        .addTag::after {
-            margin-bottom: 3px;
-            content:"";
-            width:15px;
-            height:3px;
+
+        .addTag::after, .addTag::before {
             background-color: $blue;
             display:block;
+            content:"";
+            height:3px;
+            width:15px;
+        }
+
+        .addTag::after {
+            margin-bottom: 3px;
         }
 
         .addTag::before {
-            content:"";
             transform: translateY(3px) rotate(90deg);
-            width:15px;
-            height:3px;
-            background-color: $blue;
-            display:block;
         }
         .addTag:active {
             transform:scale(0.9);

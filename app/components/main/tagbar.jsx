@@ -13,7 +13,7 @@ class Tagbar extends React.Component {
                     <div className='tags'>Записи</div>
                 </div>
                 <div className='rightBar'>
-                    <input ref={this.tagInput} className='addTagInput' placeholder="Добавить запись..."></input>
+                    <input ref={this.tagInput} className='addTagInput' placeholder="Заголовок новой записи"></input>
                     <button className='addTag' onClick={()=>{this.props.addNote(this.tagInput.current.value)}}></button>
                 </div>
             </div>

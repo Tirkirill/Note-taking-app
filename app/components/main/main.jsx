@@ -6,7 +6,7 @@ import Notes from "./notes.jsx";
 let notes = [
     {
         title:"Job",
-        text:"<div>Hello!</div>",
+        text:"Hello!",
         uniqueId:"0"
     },
     {

@@ -36,6 +36,56 @@
     }
 
     .noteRedactor {
+
+        .saveNoteButton {
+            background-color:transparent;
+            width:20px;
+            height:20px;
+            margin:10px;
+            cursor:pointer;
+            display:inline-block;
+        }
+
+        .notSaved::after,.notSaved::before {
+            display:inline-block;
+            content:"";
+            top:2px;
+            position: relative;
+            width: 3px;
+            left:9px;
+            background-color:red;
+        }
+
+        .notSaved::before {
+            height:15px;
+            transform:rotate(45deg);
+        }
+
+        .notSaved::after {
+            height:15px;
+            transform:translateX(-3px) rotate(-45deg);
+        }
+
+        .saved::after,.saved::before {
+            background-color:green;
+            display:inline-block;
+            content:"";
+            top:2px;
+            position: relative;
+            width: 3px;
+        }
+
+        .saved::after {
+            height:8px;
+            transform:rotate(120deg);
+        }
+
+        .saved::before {
+            height:15px;
+            left:9px;
+            transform:rotate(20deg);
+        }
+
         .titleEditor {
             font-weight: bold;
             padding:10px;
