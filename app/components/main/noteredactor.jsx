@@ -13,22 +13,23 @@ class NoteRedactor extends React.Component {
     }
 
     onInputHandler(e) {
-        if (e.target.innerHTML.includes("&gt;")) {
-            e.target.innerHTML = e.target.innerHTML.replace("&gt;", "\"");
-            this.caretPlacer(e.target);
-        }
-        if (e.target.innerHTML.includes("&lt;")) {
-            e.target.innerHTML = e.target.innerHTML.replace("&lt;", "\"");
-            this.caretPlacer(e.target);
-        }
+        this.replaceAll(e.target);
         if (this.titleEditor.current.innerHTML == this.props.note.title && 
             this.noteEditor.current.innerHTML == this.props.note.text) {
                 this.saveHandler();
         }
         else {
             this.notSavedHandler();
-        }
-        
+        } 
+    }
+
+    replaceAll(target) {
+        target.innerHTML = target.innerHTML.replace("<br>", "\n");
+        target.innerHTML = target.innerHTML.replace("<div>", "\n");
+        target.innerHTML = target.innerHTML.replace("</div>", "");
+        target.innerHTML = target.innerHTML.replace("&gt;", "\"");
+        target.innerHTML = target.innerHTML.replace("&lt;", "\"");
+        this.caretPlacer(target);
     }
 
     saveHandler() {
@@ -44,6 +45,11 @@ class NoteRedactor extends React.Component {
     }
 
 
+    onPasteHandler(e) {
+        e.preventDefault();
+        var text = e.clipboardData.getData("text/plain");
+        document.execCommand("insertHTML", false, text);
+    }
 
     render(){
         if (this.saveIndicator.current && this.saveNoteButton.current) {
@@ -53,8 +59,8 @@ class NoteRedactor extends React.Component {
             <div className='noteRedactor rightBar'>
                 <div ref={this.saveNoteButton} className='saveNoteButton saved' onClick={()=>this.props.saveNote(this.titleEditor.current.innerHTML, this.noteEditor.current.innerHTML)}></div>
                 <span ref={this.saveIndicator} id='saveIndicator'>Сохранено</span>
-                <div ref={this.titleEditor} contentEditable suppressContentEditableWarning className='titleEditor' onInput={this.onInputHandler}>{this.props.note.title}</div>
-                <div ref={this.noteEditor} contentEditable suppressContentEditableWarning className='redactor' onInput={this.onInputHandler}>{this.props.note.text}</div>
+                <div onPaste={this.onPasteHandler} ref={this.titleEditor} contentEditable suppressContentEditableWarning className='titleEditor' onInput={this.onInputHandler}>{this.props.note.title}</div>
+                <div onPaste={this.onPasteHandler} ref={this.noteEditor} contentEditable suppressContentEditableWarning className='redactor' onInput={this.onInputHandler}>{this.props.note.text}</div>
             </div>
         )
     }

@@ -1,9 +1,7 @@
 
 function noteReplace(text) {
     let replacer = {
-        "</div>":"",
-        "br":"",
-        "<div>":"\n",
+        "<br>":"",
     }
 
     let newText = text;
