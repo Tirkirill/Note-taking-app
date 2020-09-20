@@ -64,10 +64,7 @@ class Main extends React.Component {
         })
     }
 
-    saveNote(title, text, currentNote) {
-        let newNotes = this.state.notes.slice();
-        newNotes[currentNote].title = title;
-        newNotes[currentNote].text = text;
+    getStringNowDate() {
         let now = new Date();
         let day = now.getDate().toString();
         let month = (now.getMonth()+1).toString();
@@ -77,7 +74,15 @@ class Main extends React.Component {
         if (month.length==1) month="0"+month;
         if (hours.length==1) hours="0"+hours;
         if (minutes.length==1) minutes="0"+minutes;
-        newNotes[currentNote].lastChangeDate = day + "." + month + "." + now.getFullYear() + " " + hours + ":" + minutes;
+        return day + "." + month + "." + now.getFullYear() + " " + hours + ":" + minutes;
+    }
+
+
+    saveNote(title, text, currentNote) {
+        let newNotes = this.state.notes.slice();
+        newNotes[currentNote].title = title;
+        newNotes[currentNote].text = text;
+        newNotes[currentNote].lastChangeDate = this.getStringNowDate();
         this.setState({
             notes:newNotes
         })
