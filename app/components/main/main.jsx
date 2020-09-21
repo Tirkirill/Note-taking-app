@@ -37,8 +37,8 @@ class Main extends React.Component {
     }
 
     addNote(title) {
-        let note = {title:title, text:"", lastChangeDate: getStringNowDate()};
         if (title!="") {
+            let note = {title:title, text:"", lastChangeDate: getStringNowDate()};
             if (title.includes(this.state.query)) {
                 this.setState(
                     {
@@ -60,6 +60,9 @@ class Main extends React.Component {
 
     filterNotes(query) {
         let newSuitableNotes = [];
+        if (this.state.suitableNotes == this.state.notes) {
+            console.log("Equal");
+        }
         for (let note of this.state.notes) {
             if (note.title.toLowerCase().includes(query)) {
                 newSuitableNotes.push(note);
@@ -68,20 +71,28 @@ class Main extends React.Component {
         return newSuitableNotes;
     }
 
-    deleteNote(id) {
-        let newNotes = this.state.notes;
-        newNotes.splice(id, 1);
-        if (id == this.state.currentNote) {
-            this.setState({
-                notes:newNotes,
-                currentNote:null
-            })
+    deleteNoteID(id) {
+        let newNotes = this.state.notes.slice();
+        let index;
+        for (let i in newNotes) {
+            if (newNotes[i].uniqueId == id) {
+                index = i;
+                break;
+            }
         }
-        else {
-            this.setState({
-                notes:newNotes
-            })
-        }
+        newNotes.splice(index,1);
+        return newNotes;
+    }
+
+    deleteNote() {
+        let newSuitableNotes = this.state.suitableNotes;
+        let deletedNote = newSuitableNotes[this.state.currentNote];      
+        newSuitableNotes.splice(this.state.currentNote, 1);
+        this.setState({
+            notes: this.deleteNoteID(deletedNote.uniqueId),
+            suitableNotes:newSuitableNotes,
+            currentNote:null
+        })
     }
 
     chooseNote(event) {
@@ -101,6 +112,8 @@ class Main extends React.Component {
         })
     }
 
+
+
     onSearchInputHandler(e) {
         let query = e.target.value.toLowerCase();
         if (query=="") {
@@ -114,7 +127,7 @@ class Main extends React.Component {
         this.setState({
             query:query,
             suitableNotes:this.filterNotes(query),
-            currentNote:null
+            currentNote:null,
         })
         
     }
