@@ -24,28 +24,9 @@
         }
 
         .addTag {
-            outline:none;
-            border:none;
-            background-color:transparent;
             cursor:pointer;
         }
-
-
-        .addTag::after, .addTag::before {
-            background-color: $blue;
-            display:block;
-            content:"";
-            height:3px;
-            width:15px;
-        }
-
-        .addTag::after {
-            margin-bottom: 3px;
-        }
-
-        .addTag::before {
-            transform: translateY(3px) rotate(90deg);
-        }
+        
         .addTag:active {
             transform:scale(0.9);
         }

@@ -16,25 +16,16 @@
         .searchIcon::after, .searchIcon::before {
             position:absolute;
             display:block;
-            content:"";
         }
 
         .searchIcon::after {
-            background-color: $gray;
             left:24px;
             top:24px;
-            height:3px;
-            width:5px;
-            transform: rotate(45deg);
         }
 
         .searchIcon::before {
             top:14px;
             left:16px;
-            width:7px;
-            height:7px;
-            border-radius:50%;
-            border:2px solid $gray;
         }
 
         .searchInput:focus {
@@ -59,17 +50,6 @@
 
         .infoButton:hover ~ .info, .info:hover  {
             display:inline-block;
-        }
-        
-        .info {
-            right:105px;
-            top:20px;
-            display:none;
-            background-color:white;
-            border:1px solid $gray;
-            position: relative;
-            width:150px;
-            height:200px;
         }
     }
 

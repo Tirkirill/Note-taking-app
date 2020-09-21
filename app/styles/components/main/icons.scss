@@ -1,0 +1,41 @@
+.addTag {
+    outline:none;
+    border:none;
+    background-color:transparent;
+}
+
+.addTag::after, .addTag::before {
+    background-color: $blue;
+    display:block;
+    content:"";
+    height:3px;
+    width:15px;
+}
+
+.addTag::after {
+    margin-bottom: 3px;
+}
+
+.addTag::before {
+    transform: translateY(3px) rotate(90deg);
+}
+
+
+.searchIcon::after, .searchIcon::before {
+    display: block;
+    content:"";
+}
+
+.searchIcon::after {
+    background-color: $gray;
+    height:3px;
+    width:5px;
+    transform: rotate(45deg);
+}
+
+.searchIcon::before {
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    border:2px solid $gray;
+}
