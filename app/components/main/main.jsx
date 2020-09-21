@@ -36,7 +36,9 @@ class Main extends React.Component {
         this.onSearchInputHandler = this.onSearchInputHandler.bind(this);
     }
 
-    addNote(title) {
+    addNote(target) {
+        let title = target.value;
+        target.value = "";
         if (title!="") {
             let note = {title:title, text:"", lastChangeDate: getStringNowDate()};
             if (title.includes(this.state.query)) {
