@@ -12,6 +12,7 @@ const Navbar = (props)=> {
             </div>
             <div className='rightBar'>
                 <img className='infoButton' onClick={()=>console.log('info!')} src={infoButton}></img>
+                <div className="info"></div>
                 <img className='timeButton' onClick={()=>console.log('time!')} src={timeButton} ></img>
                 <img className='deleteButton' onClick={props.deleteNote} src={deleteButton} ></img>
                 <div className='email'>{props.user.email}</div>
