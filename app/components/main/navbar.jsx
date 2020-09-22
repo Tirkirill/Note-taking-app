@@ -1,6 +1,5 @@
 import React from "react";
 import infoButton from "../../images/infoButton.png";
-import timeButton from "../../images/timeButton.png";
 import deleteButton from "../../images/deleteButton.png";
 
 const Navbar = (props)=> {
@@ -19,7 +18,6 @@ const Navbar = (props)=> {
                     <div className="searchIcon infoIcon"></div>
                     <span>Поиск по названию</span>
                 </div>
-                <img className='timeButton' onClick={()=>console.log('time!')} src={timeButton} ></img>
                 <img className='deleteButton' onClick={props.deleteNote} src={deleteButton} ></img>
                 <div className='email'>{props.user.email}</div>
             </div>
