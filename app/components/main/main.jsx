@@ -24,6 +24,7 @@ class Main extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            user:props.user,
             notes:notes,
             currentNote:null,
             suitableNotes:notes,
@@ -140,7 +141,7 @@ class Main extends React.Component {
     render() {
         return(
             <div className='mainFlexBox'>
-                <Navbar currentNote={this.state.currentNote} onSearchInputHandler={this.onSearchInputHandler} user={this.props.user} deleteNote={this.deleteNote}/>
+                <Navbar currentNote={this.state.currentNote} onSearchInputHandler={this.onSearchInputHandler} user={this.state.user} deleteNote={this.deleteNote}/>
                 <Tagbar currentNote={this.state.currentNote} addNote={this.addNote}/>
                 <Notes  currentNote={this.state.currentNote} chooseNote = {this.chooseNote} notes={this.state.suitableNotes} saveNote={this.saveNote}/>
             </div>
