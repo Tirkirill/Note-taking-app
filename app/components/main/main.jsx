@@ -88,6 +88,9 @@ class Main extends React.Component {
 
     deleteNote() {
         let newSuitableNotes = this.state.suitableNotes;
+        if (!this.state.currentNote) {
+            return
+        }
         let deletedNote = newSuitableNotes[this.state.currentNote];      
         newSuitableNotes.splice(this.state.currentNote, 1);
         this.setState({
