@@ -7,14 +7,19 @@ import {
     Link, Redirect
 } from "react-router-dom";
 import Main from "./components/main/main.jsx";
+import Registration from "./components/forms/registration/registration.jsx";
 
 class App extends React.Component {
     render() {
         return(
             <Router>
+                <Redirect to="/registration"/>
                 <Switch>
                     <Route exact path="/">
                         <Main user={{'email':'sherbakirill@mail.ru'}}/>
+                    </Route>
+                    <Route exact path="/registration">
+                        <Registration />
                     </Route>
                 </Switch>
             </Router>
