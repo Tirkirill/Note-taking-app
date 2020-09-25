@@ -29,7 +29,7 @@ class Registration extends React.Component {
         return (
             <div>
                 {this.state.loaded && <Redirect to="/"/>}
-                <MyForm title="Регистрация" linkTo="/login" formLinkText="Есть аккаунт?" onClickHandler={(email, password)=>this.register(email, password)}/>'
+                <MyForm title="Регистрация" linkTo="/login" formLinkText="Есть аккаунт?" onClickHandler={this.register}/>
             </div>
         )
     }
