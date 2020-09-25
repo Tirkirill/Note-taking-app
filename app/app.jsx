@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 import Main from "./components/main/main.jsx";
 import Registration from "./components/forms/registration/registration.jsx";
+import Login from "./components/forms/registration/login.jsx";
 
 class App extends React.Component {
     render() {
@@ -20,6 +21,9 @@ class App extends React.Component {
                     </Route>
                     <Route exact path="/registration">
                         <Registration />
+                    </Route>
+                    <Route exact path="/login">
+                        <Login />
                     </Route>
                 </Switch>
             </Router>

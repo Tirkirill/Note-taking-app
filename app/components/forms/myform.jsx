@@ -1,8 +1,7 @@
 import React from "React";
 import {
     BrowserRouter as Router,
-    Switch,
-    Route,
+    NavLink,
     Link, Redirect
 } from "react-router-dom";
 
@@ -34,7 +33,7 @@ class MyForm extends React.Component{
                     <input pattern="[A-Za-z-0-9]{6,}" ref={this.passwordInput} placeholder="Пароль (>6 символов)"></input>
                     <button className="formButton" onClick={this.onClickHandler}></button>
                 </div>
-                <div className="formLink">Есть аккаунт? <Link to="">Нажмите сюда</Link></div>
+                <div className="formLinkText">{this.props.formLinkText} <NavLink className='formLink' to={this.props.linkTo}>Нажмите сюда</NavLink></div>
             </div>
         )
     }
