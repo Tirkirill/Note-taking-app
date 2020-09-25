@@ -1,4 +1,10 @@
 import React from "React";
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link, Redirect
+} from "react-router-dom";
 
 class MyForm extends React.Component{
     constructor(props) {
@@ -9,17 +15,13 @@ class MyForm extends React.Component{
     }
 
     onClickHandler() {
-        if (!this.emailInput.current.validity.valid) {
+        let password = this.passwordInput.current.value;
+        let email = this.emailInput.current.value;
+        if (!this.emailInput.current.validity.valid || !this.passwordInput.current.validity.valid || 
+            password == "" || email == "")  {
             return
         }
-        let email = this.emailInput.current.value;
-        let password = this.emailInput.current.value;
-        if (email.length > 5) {
-            this.props.onClickHandler();
-        }
-        else {
-            console.log("Ошибка");
-        }
+        this.props.onClickHandler();
     }
 
 
@@ -31,8 +33,8 @@ class MyForm extends React.Component{
                     <input ref={this.emailInput} type="email" placeholder="Email"></input>
                     <input pattern="[A-Za-z-0-9]{6,}" ref={this.passwordInput} placeholder="Пароль (>6 символов)"></input>
                     <button className="formButton" onClick={this.onClickHandler}></button>
-                    <div>Войти</div>
                 </div>
+                <div className="formLink">Есть аккаунт? <Link to="">Нажмите сюда</Link></div>
             </div>
         )
     }

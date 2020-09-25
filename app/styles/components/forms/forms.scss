@@ -65,4 +65,8 @@
     background-color: $form-outter;
     flex-direction: column;
     color:white;
+
+    .formLink {
+        color:$gray;
+    }
 }
