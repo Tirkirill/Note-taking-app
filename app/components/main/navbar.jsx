@@ -1,7 +1,7 @@
 import React from "react";
 import infoButton from "../../images/infoButton.png";
 import deleteButton from "../../images/deleteButton.png";
-import firebase from "../../backend/core";
+import firebase from "../../backend/core.js";
 
 const Navbar = (props)=> {
     return(
@@ -11,7 +11,7 @@ const Navbar = (props)=> {
                 <input className="searchInput" onInput={props.onSearchInputHandler}></input>
             </div>
             <div className='rightBar'>
-                <img className='infoButton' onClick={()=>console.log('info!')} src={infoButton}></img>
+                <img className='infoButton' src={infoButton}></img>
                 <div className="info">
                     <div className="addTag infoIcon"></div>
                     <span>Добавить запись</span>

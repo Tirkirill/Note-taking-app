@@ -3,6 +3,7 @@ import Navbar from "./navbar.jsx";
 import Tagbar from "./tagbar.jsx";
 import Notes from "./notes.jsx";
 import getStringNowDate from "./js/getStringNowDate";
+import database from "../../backend/database.js";
 
 let notes = [
     {
@@ -25,9 +26,9 @@ class Main extends React.Component {
         super(props);
         this.state = {
             user:props.user,
-            notes:notes,
+            notes:null,
             currentNote:null,
-            suitableNotes:notes,
+            suitableNotes:null,
             query:""
         };
         this.addNote = this.addNote.bind(this);
@@ -39,9 +40,13 @@ class Main extends React.Component {
 
     addNote(target) {
         let title = target.value;
-        target.value = "";
         if (title!="") {
+            target.value = "";
             let note = {title:title, text:"", lastChangeDate: getStringNowDate()};
+            database.ref(this.state.user.email.replace(".","")+"/"+note.title).set({
+                ...note,
+                title:null
+            })
             if (title.includes(this.state.query)) {
                 this.setState(
                     {
@@ -59,6 +64,29 @@ class Main extends React.Component {
             }
 
         }
+    }
+
+    componentDidMount() {
+        let dataNotes;
+        let notes=[];
+        database.ref("a@mailru/").once('value').then(
+            (value)=>{
+                dataNotes = value.val();
+                for (let i in dataNotes) {
+                   let note;
+                   note = {
+                       ...dataNotes[i],
+                       title:i
+                   };
+                   notes.push(note);
+                }
+                this.setState({
+                    notes:notes,
+                    suitableNotes:notes,
+                })
+            }
+        );
+
     }
 
     filterNotes(query) {
@@ -140,10 +168,14 @@ class Main extends React.Component {
 
     render() {
         return(
-            <div className='mainFlexBox'>
-                <Navbar currentNote={this.state.currentNote} onSearchInputHandler={this.onSearchInputHandler} user={this.state.user} deleteNote={this.deleteNote}/>
-                <Tagbar currentNote={this.state.currentNote} addNote={this.addNote}/>
-                <Notes  currentNote={this.state.currentNote} chooseNote = {this.chooseNote} notes={this.state.suitableNotes} saveNote={this.saveNote}/>
+            <div>
+                {this.state.notes &&
+                    <div className='mainFlexBox'>
+                        <Navbar currentNote={this.state.currentNote} onSearchInputHandler={this.onSearchInputHandler} user={this.state.user} deleteNote={this.deleteNote}/>
+                        <Tagbar currentNote={this.state.currentNote} addNote={this.addNote}/>
+                        <Notes  currentNote={this.state.currentNote} chooseNote = {this.chooseNote} notes={this.state.suitableNotes} saveNote={this.saveNote}/>
+                    </div>
+                }
             </div>
         )
     }
