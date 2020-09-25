@@ -11,6 +11,9 @@ class MyForm extends React.Component{
         this.onClickHandler = this.onClickHandler.bind(this);
         this.emailInput = React.createRef();
         this.passwordInput = React.createRef();
+        this.state = {
+            loaded:false,
+        }
     }
 
     onClickHandler() {
@@ -20,7 +23,7 @@ class MyForm extends React.Component{
             password == "" || email == "")  {
             return
         }
-        this.props.onClickHandler();
+        this.props.onClickHandler(email, password);
     }
 
 

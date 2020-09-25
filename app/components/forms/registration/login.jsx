@@ -5,7 +5,7 @@ import MyForm from "../myform.jsx";
 class Login extends React.Component {
     render() {
         return (
-            <MyForm title="Вход" linkTo="/registration" formLinkText="Нет аккаунта?" onClickHandler={()=>console.log("Регистрация!")}/>
+            <MyForm title="Вход" linkTo="/registration" formLinkText="Нет аккаунта?" onClickHandler={()=>console.log("Вход")}/>
         )
     }
 }

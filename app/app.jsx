@@ -4,21 +4,43 @@ import {
     BrowserRouter as Router,
     Switch,
     Route,
-    Link, Redirect
+    Redirect
 } from "react-router-dom";
 import Main from "./components/main/main.jsx";
 import Registration from "./components/forms/registration/registration.jsx";
 import Login from "./components/forms/registration/login.jsx";
 
+import firebase from "./backend/core";
+
 class App extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            user:null
+        }
+        firebase.auth().onAuthStateChanged((user)=> {
+            sessionStorage.setItem('user', JSON.stringify(user));
+            this.setState({ user: user});
+        });
+    }
+
+    componentWillMount() {
+        let user = JSON.parse(sessionStorage.getItem('user'));
+        if (user) {
+            this.setState({ user: user });
+        }
+    }
+
     render() {
         return(
             <Router>
-                <Redirect to="/registration"/>
+                {!this.state.user && <Redirect to='/login'/>}
                 <Switch>
-                    <Route exact path="/">
-                        <Main user={{'email':'sherbakirill@mail.ru'}}/>
-                    </Route>
+                    {this.state.user && 
+                        <Route exact path="/">
+                            <Main user={this.state.user}/>
+                        </Route>
+                    }
                     <Route exact path="/registration">
                         <Registration />
                     </Route>

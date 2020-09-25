@@ -1,6 +1,7 @@
 import React from "react";
 import infoButton from "../../images/infoButton.png";
 import deleteButton from "../../images/deleteButton.png";
+import firebase from "../../backend/core";
 
 const Navbar = (props)=> {
     return(
@@ -18,7 +19,8 @@ const Navbar = (props)=> {
                     <div className="searchIcon infoIcon"></div>
                     <span>Поиск по названию</span>
                 </div>
-                <img className='deleteButton' onClick={props.deleteNote} src={deleteButton} ></img>
+                <img className='deleteButton' onClick={props.deleteNote} src={deleteButton}></img>
+                <div className="exit" onClick={()=> firebase.auth().signOut()}>Выход</div>
                 <div className='email'>{props.user.email}</div>
             </div>
         </div>
