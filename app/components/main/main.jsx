@@ -169,12 +169,12 @@ class Main extends React.Component {
     render() {
         return(
             <div>
-                {this.state.notes &&
+                {this.state.notes ?
                     <div className='mainFlexBox'>
                         <Navbar currentNote={this.state.currentNote} onSearchInputHandler={this.onSearchInputHandler} user={this.state.user} deleteNote={this.deleteNote}/>
                         <Tagbar currentNote={this.state.currentNote} addNote={this.addNote}/>
                         <Notes  currentNote={this.state.currentNote} chooseNote = {this.chooseNote} notes={this.state.suitableNotes} saveNote={this.saveNote}/>
-                    </div>
+                    </div>:<div className="fullContainer"><div className="loading">Загрузка</div></div>
                 }
             </div>
         )
