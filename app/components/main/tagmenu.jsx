@@ -6,10 +6,10 @@ class TagMenu extends React.Component {
             <div className='tagMenu leftBar'>
                 {this.props.notes.map((note, id)=> {
                     return(
-                        <div>
-                            {this.props.currentNote==id? <input type='radio' checked id={id} key={note.uniqueId} name="note" onChange={this.props.chooseNote}></input>
-                            :<input type='radio' id={id} key={note.uniqueId} name="note" onChange={this.props.chooseNote}></input>}
-                            <label htmlFor={id}>
+                        <div key={note.uniqueId}>
+                            {this.props.currentNote==id? <input type='radio' checked id={id} name="note" onChange={this.props.chooseNote}></input>
+                            :<input type='radio' id={id} name="note" onChange={this.props.chooseNote}></input>}
+                            <label key={note.uniqueId} htmlFor={id}>
                                 <div className='noteTitle'>{note.title}</div>
                                 <div className='noteDescription'>{note.text.length>10? note.text.slice(0,10) + "...": note.text}</div>
                                 <div className='noteLastChangeDate'>{note.lastChangeDate}</div>

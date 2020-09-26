@@ -42,10 +42,9 @@ class Main extends React.Component {
         let title = target.value;
         if (title!="") {
             target.value = "";
-            let note = {title:title, text:"", lastChangeDate: getStringNowDate()};
-            database.ref(this.state.user.email.replace(".","")+"/"+note.title).set({
+            let note = {title:title, text:"", lastChangeDate: getStringNowDate(), uniqueId: new Date().getTime()};
+            database.ref(this.state.user.email.replace(".","")+"/"+note.uniqueId).set({
                 ...note,
-                title:null
             })
             if (title.includes(this.state.query)) {
                 this.setState(
@@ -69,14 +68,13 @@ class Main extends React.Component {
     componentDidMount() {
         let dataNotes;
         let notes=[];
-        database.ref("a@mailru/").once('value').then(
+        database.ref(this.state.user.email.replace(".","")+"/").once('value').then(
             (value)=>{
                 dataNotes = value.val();
                 for (let i in dataNotes) {
                    let note;
                    note = {
-                       ...dataNotes[i],
-                       title:i
+                       ...dataNotes[i]
                    };
                    notes.push(note);
                 }
@@ -116,14 +114,18 @@ class Main extends React.Component {
     }
 
     deleteNote() {
-        let newSuitableNotes = this.state.suitableNotes;
+        let newSuitableNotes = this.state.suitableNotes.slice();
         if (!this.state.currentNote) {
             return
         }
-        let deletedNote = newSuitableNotes[this.state.currentNote];      
+        let deletedNote = newSuitableNotes[this.state.currentNote];
+        let uniqueId = deletedNote.uniqueId;
+        database.ref(this.state.user.email.replace(".", "")+"/"+uniqueId).set(
+            null
+        )
         newSuitableNotes.splice(this.state.currentNote, 1);
         this.setState({
-            notes: this.deleteNoteID(deletedNote.uniqueId),
+            notes: this.deleteNoteID(uniqueId),
             suitableNotes:newSuitableNotes,
             currentNote:null
         })
@@ -138,9 +140,22 @@ class Main extends React.Component {
 
     saveNote(title, text, currentNote) {
         let newNotes = this.state.notes.slice();
+        let uniqueId = newNotes[currentNote].uniqueId;
+        let newDate = getStringNowDate();
+        let newNote = {
+            title:title,
+            text:text,
+            lastChangeDate:newDate,
+            uniqueId: uniqueId
+        }
+        database.ref(this.state.user.email.replace(".","")+"/"+uniqueId).set(
+            {
+                ...newNote
+            }
+        )
         newNotes[currentNote].title = title;
         newNotes[currentNote].text = text;
-        newNotes[currentNote].lastChangeDate = getStringNowDate();
+        newNotes[currentNote].lastChangeDate = newDate;
         this.setState({
             notes:newNotes
         })
